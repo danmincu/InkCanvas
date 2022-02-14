@@ -1,0 +1,88 @@
+﻿<Window x:Class="InkCanvas.InkPadWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Classic"
+        xmlns:local="clr-namespace:InkCanvas"
+        xmlns:src="clr-namespace:InkCanvas"
+        mc:Ignorable="d"
+        Title="InkPadWindow"
+	Width="1400" Height="800" Background="#FF3B3737"
+	WindowStartupLocation="CenterScreen">
+    
+    <Window.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Brushes.xaml" />
+                <ResourceDictionary Source="Resources/ExpanderStyles.xaml" />
+                <ResourceDictionary Source="Resources/StoryBoards.xaml" />
+                <ResourceDictionary Source="Resources/RoundBorderPanelStyle.xaml" />
+                <ResourceDictionary Source="Resources/PulseButton.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+           
+        
+        <Border Margin="5,5,171,90" Background="#FF3B373B" BorderThickness="10" CornerRadius="8,8,8,8">
+            <InkCanvas Margin="10,10,10,10" Width="Auto" Height="Auto" Background="#FFEEF589" x:Name="inkCanv"/>
+        </Border>
+
+        <!-- PEN SIZE STRIP -->
+        <Border RenderTransformOrigin="0.5,0.5" x:Name="borderImage" Style="{StaticResource RoundBorderPanelStyle}" Background="Gray" BorderBrush="White" 
+                Margin="8" Panel.ZIndex="-1"/>
+
+        <!-- STYLUS TYPE -->
+        <GroupBox HorizontalAlignment="Right" Margin="0,64.377,26.303,0" Width="130" BorderThickness="2,2,2,2" Foreground="#000000" Header="Stylus Mode" VerticalAlignment="Top" Height="97.623">
+            <StackPanel Orientation="Vertical">
+                <RadioButton Margin="4,2,0,0" Name="radInk" Content="Ink" Foreground="#000000" Click="rad_Click" Tag="{x:Static InkCanvasEditingMode.Ink}" FontFamily="Arial"/>
+                <RadioButton Margin="4,2,0,0" Name="radErasePoint" Content="Erase" Foreground="#000000" Click="rad_Click" Tag="{x:Static InkCanvasEditingMode.EraseByPoint}" FontFamily="Arial"/>
+                <RadioButton Margin="4,2,0,0" Name="radEraseByStroke" Content="Erase By Stroke" Foreground="#000000" Click="rad_Click"  Tag="{x:Static InkCanvasEditingMode.EraseByStroke}" FontFamily="Arial"/>
+                <RadioButton Margin="4,2,0,0" Name="radSelect" Content="Select" Foreground="#000000" Click="rad_Click"  Tag="{x:Static InkCanvasEditingMode.Select}" FontFamily="Arial"/>
+            </StackPanel>
+        </GroupBox>
+
+        <Expander x:Name="expB" VerticalContentAlignment="Top" HorizontalContentAlignment="Stretch" Style="{DynamicResource ExpanderStyle1}" BorderThickness="2,1,1,1" Foreground="#FFFFFBFB" 
+                  Width="293" Height="83"
+                  HorizontalAlignment="Left" 
+                  Margin="16,0,0,0" VerticalAlignment="Bottom">
+            <Expander.Header>
+                <TextBlock TextWrapping="Wrap" FontWeight="Bold" Foreground="#FF000000" Text="Pick brush size" />
+            </Expander.Header>
+            <StackPanel Orientation="Horizontal">
+                <RadioButton Style="{DynamicResource StrokeThicknessRadioButtonStyle}" Content="RadioButton" x:Name="b_2" FontSize="2" d:LayoutOverrides="Height" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" Click="penSize_Click"/>
+                <RadioButton Style="{DynamicResource StrokeThicknessRadioButtonStyle}" Content="RadioButton" x:Name="b_4" FontSize="4" d:LayoutOverrides="Height" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" Click="penSize_Click"/>
+                <RadioButton Style="{DynamicResource StrokeThicknessRadioButtonStyle}" Content="RadioButton" x:Name="b_6" FontSize="6" d:LayoutOverrides="Height" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" Click="penSize_Click"/>
+                <RadioButton Style="{DynamicResource StrokeThicknessRadioButtonStyle}" Content="RadioButton" x:Name="b_8" FontSize="8" d:LayoutOverrides="Height" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" Click="penSize_Click"/>
+                <RadioButton Style="{DynamicResource StrokeThicknessRadioButtonStyle}" Content="RadioButton" x:Name="b_10" FontSize="10" d:LayoutOverrides="Height" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" Click="penSize_Click"/>
+                <RadioButton Style="{DynamicResource StrokeThicknessRadioButtonStyle}" Content="RadioButton" x:Name="b_12" FontSize="12" d:LayoutOverrides="Height" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" Click="penSize_Click"/>
+                <RadioButton Style="{DynamicResource StrokeThicknessRadioButtonStyle}" Content="RadioButton" x:Name="b_14" FontSize="14" d:LayoutOverrides="Height" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" Click="penSize_Click"/>
+            </StackPanel>
+        </Expander>
+
+        <!-- BUTTON STRIP -->
+        <Border Grid.Row="1" CornerRadius="10,10,10,10" Background="#993B3737" MaxWidth="800" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="btnNew" Margin="5,5,5,5" Width="48" Height="48" Content="g" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="New" Click="btnNew_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Button x:Name="btnSave" Margin="5,5,5,5" Width="48" Height="48" Content="=" Style="{DynamicResource PulseButton}" FontFamily="Wingdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="Save" Click="btnSave_Click" HorizontalAlignment="Center"/>
+                <Button x:Name="btnOpen" Margin="5,5,5,5" Width="48" Height="48" Content="1" Style="{DynamicResource PulseButton}" FontFamily="Wingdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="Open" Click="btnOpen_Click"/>
+                <Button x:Name="btnCut" Margin="5,5,5,5" Width="48" Height="48" Content="%" Style="{DynamicResource PulseButton}" FontFamily="Wingdings 2" FontSize="28" Foreground="#FFFFFFFF" ToolTip="Cut" Click="btnCut_Click"/>
+                <Button x:Name="btnCopy" Margin="5,5,5,5" Width="48" Height="48" Content="2" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="Copy" Click="btnCopy_Click"/>
+                <Button x:Name="btnPaste" Margin="5,5,5,5"  Width="48" Height="48" Content="¤" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="Paste" Click="btnPaste_Click"/>
+                <Button x:Name="btnDelete" Margin="5,5,5,5"  Width="48" Height="48" Content="x" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="Delete" Click="btnDelete_Click"/>
+                <Button x:Name="btnSelectAll" Margin="5,5,5,5"  Width="48" Height="48" Content="¤" Style="{DynamicResource PulseButton}" FontFamily="Wingdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="Select All" Click="btnSelectAll_Click"/>
+                <Button x:Name="btnFormatSelection" Margin="5,5,5,5" Width="48" Height="48" Content="¢" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="Format Selection" Click="btnFormat_Click"/>
+                <Button x:Name="btnStylusSetting" Margin="5,5,5,5" Width="48" Height="48" Content="@" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="Stylus Settings" Click="btnStylusSettings_Click"/>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</Window>
