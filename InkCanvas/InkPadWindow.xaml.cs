@@ -23,6 +23,48 @@ namespace InkCanvas
         {
             this.InitializeComponent();
             this.radInk.IsChecked = true;
+            this.inkCanv.StrokeCollected += InkCanv_StrokeCollected;
+            this.inkCanv.Strokes.StrokesChanged += Strokes_StrokesChanged;
+            this.inkCanv.PreviewStylusMove += InkCanv_PreviewStylusMove;
+            this.inkCanv.StylusMove += InkCanv_StylusMove;
+
+        }
+
+        private void InkCanv_StylusMove(object sender, StylusEventArgs e)
+        {
+            System.Diagnostics.Trace.WriteLine(sender);
+
+            double pressure = 0;
+            int count = 0;
+            StylusPointCollection points = e.GetStylusPoints(this.inkCanv);
+            foreach (var point in points)
+            {
+                pressure += point.PressureFactor;
+                count++;
+            }
+            System.Diagnostics.Trace.WriteLine(count);
+            var a = pressure / count;
+            System.Diagnostics.Trace.WriteLine($"pressure average {a}");
+        }
+
+        private void InkCanv_PreviewStylusMove(object sender, StylusEventArgs e)
+        {
+            System.Diagnostics.Trace.WriteLine(sender);
+        }
+
+        private void Strokes_StrokesChanged(object sender, StrokeCollectionChangedEventArgs e)
+        {
+            e.Added.StrokesChanged += Added_StrokesChanged;
+        }
+
+        private void Added_StrokesChanged(object sender, StrokeCollectionChangedEventArgs e)
+        {
+            System.Diagnostics.Trace.WriteLine(sender);
+        }
+
+        private void InkCanv_StrokeCollected(object sender, InkCanvasStrokeCollectedEventArgs e)
+        {
+            
         }
 
         // New command: just clear all the strokes.

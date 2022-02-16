@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InkCanvas", "InkCanvas\InkCanvas.csproj", "{14580A49-7758-4AA4-B46E-C8FEEF3441C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransparentInkCanvas", "TransparentInkCanvas\TransparentInkCanvas.csproj", "{C7CFBE43-4806-4B81-8803-62E7C3F53BB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{14580A49-7758-4AA4-B46E-C8FEEF3441C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14580A49-7758-4AA4-B46E-C8FEEF3441C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14580A49-7758-4AA4-B46E-C8FEEF3441C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7CFBE43-4806-4B81-8803-62E7C3F53BB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7CFBE43-4806-4B81-8803-62E7C3F53BB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7CFBE43-4806-4B81-8803-62E7C3F53BB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7CFBE43-4806-4B81-8803-62E7C3F53BB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
